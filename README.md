@@ -164,7 +164,8 @@ TalentFlow is a modern, feature-rich hiring platform designed for streamlined re
 - **Tailwind CSS Resolution**:  
   If you see `Can't resolve 'tailwindcss'`, clear cache:
   ```bash
-  rm -rf node_modules package-lock.json .vite
+  - **Kanban Board Drag-and-Drop Integration**:  
+    Integrating drag-and-drop functionality for the Kanban board is in progress. While the UI supports moving cards between columns, updating the underlying data state is not yet fully implemented. Ensure that state changes are properly handled and persisted when cards are moved. Further enhancements are planned to synchronize UI interactions with the mock data layer.
   npm install
   ```
   Ensure `vite.config.ts` includes `@tailwindcss/vite`.
@@ -172,16 +173,12 @@ TalentFlow is a modern, feature-rich hiring platform designed for streamlined re
 - **Mock Data Limitations**:  
   Analytics use static mock data. For dynamic metrics, extend `DatabaseService`.
 
-- **Theme Toggle Feedback**:  
-  No user feedback on theme change. Consider adding notifications (see Future Improvements).
-
 ## Future Improvements
 
 - Integrate with a real backend (e.g., Node.js/Express).
 - Link candidates to jobs/assessments for dynamic analytics.
 - Add toast notifications (e.g., `react-toastify`) for user feedback.
 - Improve accessibility (ARIA, Lighthouse audits).
-- Add unit tests (Jest, React Testing Library).
 - Implement server-side pagination for large datasets.
 
 ## Contributing
