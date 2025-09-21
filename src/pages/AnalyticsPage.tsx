@@ -232,7 +232,7 @@ export default function AnalyticsPage() {
                     fill="#8884d8"
                     dataKey="count"
                   >
-                    {analyticsData?.assessmentScores.map((entry, index) => (
+                    {analyticsData?.assessmentScores.map((_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>

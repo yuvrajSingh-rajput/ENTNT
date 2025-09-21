@@ -1,45 +1,41 @@
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { EditJobDialog } from "./EditJobDialog"
-import { Edit, MapPin, Clock, Calendar, Archive, ArchiveRestore } from "lucide-react"
-import type { Job } from "@/lib/seed-data"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { EditJobDialog } from "./EditJobDialog";
+import { Edit, MapPin, Clock, Calendar, Archive, ArchiveRestore } from "lucide-react";
+import { DatabaseService } from "@/lib/db";
+import type { Job } from "@/lib/seed-data";
 
 interface JobDetailsProps {
-  job: Job
-  onJobUpdated: (job: Job) => void
+  job: Job;
+  onJobUpdated: (job: Job) => void;
 }
 
 export function JobDetails({ job, onJobUpdated }: JobDetailsProps) {
-  const [editDialogOpen, setEditDialogOpen] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleArchiveToggle = async () => {
     try {
-      setLoading(true)
-      const newStatus = job.status === "active" ? "archived" : "active"
-      const response = await fetch(`/api/jobs/${job.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
-      })
-
-      if (!response.ok) throw new Error("Failed to update job")
-
-      const updatedJob = await response.json()
-      onJobUpdated(updatedJob)
+      setLoading(true);
+      const newStatus = job.status === "active" ? "archived" : "active";
+      const updatedJob = await DatabaseService.updateJob(job.id, { status: newStatus });
+      if (updatedJob) {
+        onJobUpdated(updatedJob);
+      }
     } catch (error) {
-      console.error("Failed to update job:", error)
+      console.error("Failed to update job:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const handleJobUpdated = (updatedJob: Job) => {
-    setEditDialogOpen(false)
-    onJobUpdated(updatedJob)
-  }
+  const handleJobUpdated = () => {
+    setEditDialogOpen(false);
+    // Refetch job data would happen here in a real app
+    // In React Router, rely on onJobUpdated from parent (JobDetailPage) to update state
+  };
 
   return (
     <div className="space-y-6">
@@ -77,7 +73,6 @@ export function JobDetails({ job, onJobUpdated }: JobDetailsProps) {
                 </div>
               </div>
             </div>
-
             <div className="flex items-center space-x-2">
               <Button variant="outline" onClick={() => setEditDialogOpen(true)}>
                 <Edit className="h-4 w-4 mr-2" />
@@ -99,7 +94,6 @@ export function JobDetails({ job, onJobUpdated }: JobDetailsProps) {
             </div>
           </div>
         </CardHeader>
-
         <CardContent className="space-y-6">
           {job.tags.length > 0 && (
             <div>
@@ -136,5 +130,5 @@ export function JobDetails({ job, onJobUpdated }: JobDetailsProps) {
 
       <EditJobDialog job={job} open={editDialogOpen} onOpenChange={setEditDialogOpen} onJobUpdated={handleJobUpdated} />
     </div>
-  )
+  );
 }
