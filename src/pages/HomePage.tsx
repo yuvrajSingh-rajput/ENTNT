@@ -8,10 +8,10 @@ export default function HomePage() {
   const navigate = useNavigate() 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-slate-100">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 to-slate-100">
       <Navigation />
 
-      <main className="container mx-auto px-4 py-16">
+      <main className="flex-1 container mx-auto px-4 py-16">
         {/* Hero Section */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium mb-8 border border-slate-200">
@@ -48,6 +48,7 @@ export default function HomePage() {
 
         {/* Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {/* Job Management */}
           <Card 
             className="group hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-[1.02] border-0 shadow-md bg-white" 
             onClick={() => navigate("/jobs")}
@@ -69,6 +70,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
+          {/* Candidate Pipeline */}
           <Card 
             className="group hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-[1.02] border-0 shadow-md bg-white" 
             onClick={() => navigate("/candidates")}
@@ -90,6 +92,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
+          {/* Smart Assessments */}
           <Card 
             className="group hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-[1.02] border-0 shadow-md bg-white"
             onClick={() => navigate("/assessments")}
@@ -111,6 +114,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
+          {/* Analytics */}
           <Card className="group hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] border-0 shadow-md bg-white" onClick={() => navigate('/analytics')}>
             <CardHeader className="pb-4">
               <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
@@ -137,6 +141,7 @@ export default function HomePage() {
               Built for Professional Teams
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Intelligent Matching */}
               <div className="p-8 rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="w-16 h-16 bg-slate-100 rounded-xl flex items-center justify-center mb-6">
                   <Briefcase className="h-8 w-8 text-slate-700" />
@@ -147,6 +152,7 @@ export default function HomePage() {
                 </p>
               </div>
 
+              {/* Pipeline Visibility */}
               <div className="p-8 rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="w-16 h-16 bg-slate-100 rounded-xl flex items-center justify-center mb-6">
                   <Users className="h-8 w-8 text-slate-700" />
@@ -157,6 +163,7 @@ export default function HomePage() {
                 </p>
               </div>
 
+              {/* Fast Performance */}
               <div className="p-8 rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="w-16 h-16 bg-slate-100 rounded-xl flex items-center justify-center mb-6">
                   <Zap className="h-8 w-8 text-slate-700" />
@@ -167,6 +174,7 @@ export default function HomePage() {
                 </p>
               </div>
 
+              {/* Data Security */}
               <div className="p-8 rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="w-16 h-16 bg-slate-100 rounded-xl flex items-center justify-center mb-6">
                   <Shield className="h-8 w-8 text-slate-700" />
@@ -199,9 +207,6 @@ export default function HomePage() {
               </div>
               <div className="flex justify-between items-center p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-all duration-300">
                 <span className="font-medium">Reset Database</span>
-                {/* <Button variant="secondary" size="sm" className="bg-slate-600 hover:bg-slate-500 text-white border-0">
-                  Reset
-                </Button> */}
               </div>
               <div className="flex justify-between items-center p-4 bg-slate-700/50 rounded-lg">
                 <span className="font-medium">Storage Status</span>
@@ -236,6 +241,16 @@ export default function HomePage() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-card border-t border-border mt-8">
+        <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} TalentFlow. All rights reserved.</p>
+          <p className="mt-2 md:mt-0">
+            Made with ❤️ by <span className="font-medium text-foreground">Yuvraj Singh</span>
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
