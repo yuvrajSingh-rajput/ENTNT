@@ -23,7 +23,7 @@ interface JobsListProps {
   currentPage: number
   onPageChange: (page: number) => void
   onJobUpdated: () => void
-  onViewJob?: (jobId: string) => void // Callback for viewing job details
+  onViewJob?: (jobId: string) => void 
 }
 
 export const JobsList: React.FC<JobsListProps> = ({

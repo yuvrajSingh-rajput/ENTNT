@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom" // Changed from next/navigation
+import { useParams, useNavigate } from "react-router-dom" 
 import { Navigation } from "@/components/layout/Navigation"
 import { AssessmentForm } from "@/components/assessments/AssessmentForm"
 import { Button } from "@/components/ui/button"
@@ -7,8 +7,8 @@ import { ArrowLeft } from "lucide-react"
 import type { Job, Assessment } from "@/lib/seed-data"
 
 export default function TakeAssessmentPage() {
-  const { jobId } = useParams() // Changed to destructure jobId directly
-  const navigate = useNavigate() // Changed from useRouter
+  const { jobId } = useParams() 
+  const navigate = useNavigate() 
   const [job, setJob] = useState<Job | null>(null)
   const [assessment, setAssessment] = useState<Assessment | null>(null)
   const [loading, setLoading] = useState(true)
@@ -71,7 +71,7 @@ export default function TakeAssessmentPage() {
       console.log("Assessment submitted:", result)
 
       // Redirect to success page or back to jobs
-      navigate("/jobs") // Changed from router.push
+      navigate("/jobs") 
     } catch (error) {
       console.error("Failed to submit assessment:", error)
     }

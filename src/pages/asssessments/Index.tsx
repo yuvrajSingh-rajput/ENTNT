@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom" // Changed from useRouter
+import { useNavigate } from "react-router-dom" 
 import { Navigation } from "@/components/layout/Navigation"
 import { AssessmentsList } from "@/components/assessments/AssessmentsList"
 import { SearchCommand } from "@/components/ui/search-command"
@@ -13,8 +13,7 @@ export default function AssessmentsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
-  const navigate = useNavigate() // Changed from useRouter
-
+  const navigate = useNavigate()
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -72,11 +71,11 @@ export default function AssessmentsPage() {
   }, [])
 
   const handleCreateAssessment = (jobId: string) => {
-    navigate(`/assessments/${jobId}/builder`) // Changed from router.push
+    navigate(`/assessments/${jobId}/builder`) 
   }
 
   const handleEditAssessment = (jobId: string) => {
-    navigate(`/assessments/${jobId}/builder`) // Changed from router.push
+    navigate(`/assessments/${jobId}/builder`) 
   }
 
   return (

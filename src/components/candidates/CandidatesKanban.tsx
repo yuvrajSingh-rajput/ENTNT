@@ -4,9 +4,8 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Eye, Mail } from "lucide-react"
-import { useNavigate } from "react-router-dom" // Changed from useRouter
+import { useNavigate } from "react-router-dom" 
 
-// Define the Candidate type locally if not importing
 interface Candidate {
   id: string
   name: string
@@ -32,7 +31,7 @@ const stages = [
 ]
 
 export function CandidatesKanban({ candidates = [], loading, error, onCandidateUpdated }: CandidatesKanbanProps) {
-  const navigate = useNavigate() // Changed from useRouter
+  const navigate = useNavigate()
   const [dragLoading, setDragLoading] = useState(false)
 
   const candidatesByStage = useMemo(() => {
@@ -70,9 +69,8 @@ export function CandidatesKanban({ candidates = [], loading, error, onCandidateU
       onCandidateUpdated()
     } catch (error) {
       console.error("Failed to update candidate:", error)
-      // Show error to user or handle it appropriately
       alert("Failed to update candidate. Please try again.")
-      onCandidateUpdated() // Refresh to revert optimistic update
+      onCandidateUpdated() 
     } finally {
       setDragLoading(false)
     }
@@ -172,7 +170,7 @@ export function CandidatesKanban({ candidates = [], loading, error, onCandidateU
                                   onClick={(e) => {
                                     e.stopPropagation()
                                     e.preventDefault()
-                                    navigate(`/candidates/${candidate.id}`) // Changed from router.push
+                                    navigate(`/candidates/${candidate.id}`) 
                                   }}
                                   className="h-6 w-6 p-0 flex-shrink-0"
                                 >

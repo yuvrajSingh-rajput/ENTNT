@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { useNavigate } from "react-router-dom"; // Changed from useRouter to useNavigate
+import { useNavigate } from "react-router-dom";
 import { useDebounce } from "@/hooks/use-debounce";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Eye, Mail } from "lucide-react";
@@ -31,7 +31,7 @@ export function EnhancedCandidatesList({
   currentPage,
   onPageChange,
 }: EnhancedCandidatesListProps) {
-  const navigate = useNavigate(); // Changed from useRouter to useNavigate
+  const navigate = useNavigate(); 
   const debouncedSearch = useDebounce(searchTerm, 300);
 
   const filteredCandidates = useMemo(() => {
@@ -139,14 +139,10 @@ export function EnhancedCandidatesList({
                       >
                         <Mail className="h-4 w-4" />
                       </Button>
-
-                      {/* <Button variant="ghost" size="sm">
-                        <Phone className="h-4 w-4" />
-                      </Button> */}
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => navigate(`/candidates/${candidate.id}`)} // Changed from router.push to navigate
+                        onClick={() => navigate(`/candidates/${candidate.id}`)}
                       >
                         <Eye className="h-4 w-4" />
                       </Button>

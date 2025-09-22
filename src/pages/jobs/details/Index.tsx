@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom" // Changed from next/navigation to react-router-dom
+import { useParams, useNavigate } from "react-router-dom" 
 import { Navigation } from "@/components/layout/Navigation"
 import { JobDetails } from "@/components/jobs/JobDetails"
 import { Button } from "@/components/ui/button"
@@ -7,8 +7,8 @@ import { ArrowLeft } from "lucide-react"
 import type { Job } from "@/lib/seed-data"
 
 export default function JobDetailPage() {
-  const { jobId } = useParams() // Still using useParams, but from react-router-dom
-  const navigate = useNavigate() // Changed from useRouter to useNavigate
+  const { jobId } = useParams() 
+  const navigate = useNavigate() 
   const [job, setJob] = useState<Job | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

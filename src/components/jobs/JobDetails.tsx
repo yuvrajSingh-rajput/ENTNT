@@ -33,8 +33,6 @@ export function JobDetails({ job, onJobUpdated }: JobDetailsProps) {
 
   const handleJobUpdated = () => {
     setEditDialogOpen(false);
-    // Refetch job data would happen here in a real app
-    // In React Router, rely on onJobUpdated from parent (JobDetailPage) to update state
   };
 
   return (

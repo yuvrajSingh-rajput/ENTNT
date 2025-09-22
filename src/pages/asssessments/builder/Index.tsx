@@ -8,8 +8,8 @@ import { ArrowLeft, Eye, EyeOff } from "lucide-react"
 import type { Job, Assessment } from "@/lib/seed-data"
 
 export default function AssessmentBuilderPage() {
-  const { jobId } = useParams<{ jobId: string }>() // ✅ React Router
-  const navigate = useNavigate() // ✅ instead of Next.js router
+  const { jobId } = useParams<{ jobId: string }>() 
+  const navigate = useNavigate() 
 
   const [job, setJob] = useState<Job | null>(null)
   const [assessment, setAssessment] = useState<Assessment | null>(null)
@@ -80,7 +80,6 @@ export default function AssessmentBuilderPage() {
     [jobId]
   )
 
-  // ✅ Loading UI
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
@@ -99,7 +98,6 @@ export default function AssessmentBuilderPage() {
     )
   }
 
-  // ✅ Error UI
   if (error || !job) {
     return (
       <div className="min-h-screen bg-background">
@@ -120,7 +118,6 @@ export default function AssessmentBuilderPage() {
     )
   }
 
-  // ✅ Main UI
   return (
     <div className="min-h-screen bg-background">
       <Navigation />

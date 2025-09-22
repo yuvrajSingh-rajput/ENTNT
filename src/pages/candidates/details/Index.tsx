@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom" // Changed from next/navigation to react-router-dom
+import { useParams, useNavigate } from "react-router-dom"
 import { Navigation } from "@/components/layout/Navigation"
 import { CandidateProfile } from "@/components/candidates/CandidateProfile"
 import { Button } from "@/components/ui/button"
@@ -7,8 +7,8 @@ import { ArrowLeft } from "lucide-react"
 import type { Candidate, TimelineEntry } from "@/lib/seed-data"
 
 export default function CandidateDetailPage() {
-  const { candidateId } = useParams() // Still using useParams, but from react-router-dom
-  const navigate = useNavigate() // Changed from useRouter to useNavigate
+  const { candidateId } = useParams()
+  const navigate = useNavigate() 
   const [candidate, setCandidate] = useState<Candidate | null>(null)
   const [timeline, setTimeline] = useState<TimelineEntry[]>([])
   const [loading, setLoading] = useState(true)
