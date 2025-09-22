@@ -361,8 +361,8 @@ export const initializeMSW = async () => {
   return false;
 };
 
-if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
+// if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   initializeMSW().catch((error) => {
     console.error("Failed to initialize MSW:", error);
   });
-}
+// }

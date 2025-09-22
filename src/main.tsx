@@ -8,9 +8,7 @@ import App from "./App.tsx";
 import { initializeMSW } from "./lib/msw.ts";
 
 async function enableMocking() {
-  if (process.env.NODE_ENV === "development") {
-    await initializeMSW();
-  }
+  await initializeMSW();
 }
 
 enableMocking().then(() => {
