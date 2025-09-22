@@ -1,53 +1,14 @@
-import { useNavigate } from "react-router-dom" // Changed from useRouter
+import { useNavigate } from "react-router-dom" 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Users, Briefcase, FileText, BarChart3, ArrowRight, Sparkles, Zap, Shield } from "lucide-react"
 import { Navigation } from "@/components/layout/Navigation"
 
 export default function HomePage() {
-  const navigate = useNavigate() // Changed from useRouter
+  const navigate = useNavigate() 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-slate-100">
-      {/* Navigation */}
-      {/* <nav className="bg-white/90 backdrop-blur-lg border-b border-gray-200/60 sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-slate-700 to-slate-900 rounded-lg flex items-center justify-center shadow-md">
-                <span className="text-white font-bold text-lg">TF</span>
-              </div>
-              <span className="font-bold text-xl text-slate-900">TalentFlow</span>
-            </div>
-            <div className="flex space-x-1">
-              <button
-                onClick={() => navigate("/")}
-                className="flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium bg-slate-800 text-white shadow-sm hover:bg-slate-900 transition-all duration-200"
-              >
-                <span>Dashboard</span>
-              </button>
-              <button
-                onClick={() => navigate("/jobs")}
-                className="flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
-              >
-                <span>Jobs</span>
-              </button>
-              <button
-                onClick={() => navigate("/candidates")}
-                className="flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
-              >
-                <span>Candidates</span>
-              </button>
-              <button
-                onClick={() => navigate("/assessments")}
-                className="flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200"
-              >
-                <span>Assessments</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav> */}
       <Navigation />
 
       <main className="container mx-auto px-4 py-16">
