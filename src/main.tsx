@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { MSWProvider } from "./components/msw-provider.tsx";
 import { ToastProvider } from "./components/ui/toast-provider.tsx";
-import "./index.css";
 import "./styles/global.css";
 import App from "./App.tsx";
 import { initializeMSW } from "./lib/msw.ts";

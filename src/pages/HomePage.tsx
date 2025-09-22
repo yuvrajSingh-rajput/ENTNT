@@ -75,9 +75,10 @@ export default function HomePage() {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
+              onClick={() => navigate('/jobs')}
               variant="outline" 
               size="lg"
-              className="px-8 py-3 rounded-lg border-slate-300 text-slate-700 hover:bg-slate-50 transition-all duration-300"
+              className="px-8 py-3 rounded-lg border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700 transition-all duration-300"
             >
               View Demo
             </Button>
@@ -152,7 +153,7 @@ export default function HomePage() {
           <Card className="group hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] border-0 shadow-md bg-white" onClick={() => navigate('/analytics')}>
             <CardHeader className="pb-4">
               <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
-                <BarChart3 className="h-6 w-6 text-slate-400" />
+                <BarChart3 className="h-6 w-6 text-slate-700" />
               </div>
               <CardTitle className="text-xl font-semibold text-slate-900">Analytics & Reports</CardTitle>
               <CardDescription className="text-slate-600">
