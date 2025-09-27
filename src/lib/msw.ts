@@ -5,13 +5,14 @@ import { DatabaseService } from "./db";
 // Simulate network latency and errors
 const simulateNetworkConditions = async (isWrite: boolean = false) => {
   await delay(Math.random() * 1000 + 200); // 200–1200ms delay
-  if (isWrite && Math.random() < 0.075) { // 7.5% error rate
+  if (isWrite && Math.random() < 0.075) {
+    // 7.5% error rate
     throw new Error("Network error");
   }
 };
 
 // Cache for search results
-const searchCache = new Map<string, { results: any[], timestamp: number }>();
+const searchCache = new Map<string, { results: any[]; timestamp: number }>();
 const CACHE_DURATION = 30000; // 30 seconds
 
 // Cache for database initialization
@@ -30,7 +31,9 @@ export const handlers = [
       const search = url.searchParams.get("search") || "";
       const status = url.searchParams.get("status") || "";
       const page = Number.parseInt(url.searchParams.get("page") || "1");
-      const pageSize = Number.parseInt(url.searchParams.get("pageSize") || "10");
+      const pageSize = Number.parseInt(
+        url.searchParams.get("pageSize") || "10"
+      );
       const sort = url.searchParams.get("sort") || "order";
       const result = await DatabaseService.getJobs({
         search,
@@ -42,7 +45,10 @@ export const handlers = [
       return HttpResponse.json(result);
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -61,9 +67,15 @@ export const handlers = [
       return HttpResponse.json(newJob, { status: 201 });
     } catch (error) {
       console.error("API Error:", error);
-      const errorMessage = error instanceof Error ? error.message : "Internal server error";
-      const isBadRequest = error instanceof Error && (error.message.includes("Slug") || error.message.includes("Title"));
-      return HttpResponse.json({ error: errorMessage }, { status: isBadRequest ? 400 : 500 });
+      const errorMessage =
+        error instanceof Error ? error.message : "Internal server error";
+      const isBadRequest =
+        error instanceof Error &&
+        (error.message.includes("Slug") || error.message.includes("Title"));
+      return HttpResponse.json(
+        { error: errorMessage },
+        { status: isBadRequest ? 400 : 500 }
+      );
     }
   }),
 
@@ -83,7 +95,10 @@ export const handlers = [
       return HttpResponse.json(updatedJob);
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -99,7 +114,11 @@ export const handlers = [
       await simulateNetworkConditions(true);
       const jobId = params.id as string;
       const { fromOrder, toOrder } = (await request.json()) as any;
-      const result = await DatabaseService.reorderJob(jobId, fromOrder, toOrder);
+      const result = await DatabaseService.reorderJob(
+        jobId,
+        fromOrder,
+        toOrder
+      );
       return HttpResponse.json(result);
     } catch (error) {
       console.error("API Error:", error);
@@ -119,7 +138,9 @@ export const handlers = [
       const search = url.searchParams.get("search") || "";
       const stage = url.searchParams.get("stage") || "";
       const page = Number.parseInt(url.searchParams.get("page") || "1");
-      const pageSize = Number.parseInt(url.searchParams.get("pageSize") || "50");
+      const pageSize = Number.parseInt(
+        url.searchParams.get("pageSize") || "50"
+      );
       const result = await DatabaseService.getCandidates({
         search,
         stage,
@@ -129,7 +150,10 @@ export const handlers = [
       return HttpResponse.json(result);
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -145,7 +169,10 @@ export const handlers = [
       return HttpResponse.json(newCandidate, { status: 201 });
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -158,14 +185,23 @@ export const handlers = [
       await simulateNetworkConditions(true);
       const candidateId = params.id as string;
       const updates = (await request.json()) as any;
-      const updatedCandidate = await DatabaseService.updateCandidate(candidateId, updates);
+      const updatedCandidate = await DatabaseService.updateCandidate(
+        candidateId,
+        updates
+      );
       if (!updatedCandidate) {
-        return HttpResponse.json({ error: "Candidate not found" }, { status: 404 });
+        return HttpResponse.json(
+          { error: "Candidate not found" },
+          { status: 404 }
+        );
       }
       return HttpResponse.json(updatedCandidate);
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -181,7 +217,10 @@ export const handlers = [
       return HttpResponse.json(result);
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -198,7 +237,10 @@ export const handlers = [
       return HttpResponse.json(result);
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -211,11 +253,17 @@ export const handlers = [
       await simulateNetworkConditions(true);
       const jobId = params.jobId as string;
       const assessmentData = (await request.json()) as any;
-      const savedAssessment = await DatabaseService.saveAssessment(jobId, assessmentData);
+      const savedAssessment = await DatabaseService.saveAssessment(
+        jobId,
+        assessmentData
+      );
       return HttpResponse.json(savedAssessment);
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -228,11 +276,18 @@ export const handlers = [
       await simulateNetworkConditions(true);
       const jobId = params.jobId as string;
       const { candidateId, responses } = (await request.json()) as any;
-      const result = await DatabaseService.submitAssessmentResponse(jobId, candidateId, responses);
+      const result = await DatabaseService.submitAssessmentResponse(
+        jobId,
+        candidateId,
+        responses
+      );
       return HttpResponse.json(result, { status: 201 });
     } catch (error) {
       console.error("API Error:", error);
-      return HttpResponse.json({ error: "Internal server error" }, { status: 500 });
+      return HttpResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
   }),
 
@@ -268,21 +323,32 @@ export const handlers = [
       const assessmentResults = [];
       try {
         // Get all jobs first, then search for assessments
-        const allJobs = await DatabaseService.getJobs({ search: "", page: 1, pageSize: 100 });
+        const allJobs = await DatabaseService.getJobs({
+          search: "",
+          page: 1,
+          pageSize: 100,
+        });
         const assessmentPromises = allJobs.jobs.map(async (job) => {
           try {
-            const assessmentResult = await DatabaseService.getAssessment(job.id);
+            const assessmentResult = await DatabaseService.getAssessment(
+              job.id
+            );
             const assessment = assessmentResult.assessment;
             if (
               assessment &&
               (assessment.title.toLowerCase().includes(query.toLowerCase()) ||
-                (assessment.description && assessment.description.toLowerCase().includes(query.toLowerCase())))
+                (assessment.description &&
+                  assessment.description
+                    .toLowerCase()
+                    .includes(query.toLowerCase())))
             ) {
               return {
                 id: assessment.id,
                 title: assessment.title,
                 type: "assessment",
-                description: `${job.title} • ${assessment.sections?.length || 0} sections`,
+                description: `${job.title} • ${
+                  assessment.sections?.length || 0
+                } sections`,
                 url: `/assessments/${job.id}/builder`,
               };
             }
@@ -331,7 +397,10 @@ export const handlers = [
 
   // DELETE endpoint
   http.delete("/api/*", async () => {
-    return HttpResponse.json({ error: "Delete not implemented" }, { status: 501 });
+    return HttpResponse.json(
+      { error: "Delete not implemented" },
+      { status: 501 }
+    );
   }),
 
   // Catch-all for unhandled endpoints
@@ -361,8 +430,6 @@ export const initializeMSW = async () => {
   return false;
 };
 
-// if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-  initializeMSW().catch((error) => {
-    console.error("Failed to initialize MSW:", error);
-  });
-// }
+initializeMSW().catch((error) => {
+  console.error("Failed to initialize MSW:", error);
+});
