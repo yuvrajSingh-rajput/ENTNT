@@ -247,7 +247,8 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} TalentFlow. All rights reserved.</p>
           <p className="mt-2 md:mt-0">
-            Made with ❤️ by <span className="font-medium text-foreground">Yuvraj Singh</span>
+            {" "}
+            {/* Made with ❤️ by <span className="font-medium text-foreground">Yuvraj Singh</span> */}
           </p>
         </div>
       </footer>
